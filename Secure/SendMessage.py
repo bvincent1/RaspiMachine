@@ -3,6 +3,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from sys import argv
+from datetime import datetime
 
 def sendMessage(fileName, target = 'vincent@ualberta.ca'):
 	# important junk
@@ -11,7 +12,8 @@ def sendMessage(fileName, target = 'vincent@ualberta.ca'):
 
 	# Create message container - the correct MIME type is multipart/alternative.
 	msg = MIMEMultipart('alternative')
-	msg['Subject'] = "Alert"
+	time = datetime.now()
+	msg['Subject'] = "Alert " + str(time.hour) + ':' + str(time.minute)
 	msg['From'] = username
 	msg['To'] = target
 

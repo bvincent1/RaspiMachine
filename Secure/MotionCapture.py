@@ -13,8 +13,8 @@ from PIL import Image
 # Sensitivity (how many changed pixels before capturing an image)
 # ForceCapture (whether to force an image to be captured every forceCaptureTime seconds)
 threshold = 10
-sensitivity = 20
-forceCapture = True
+sensitivity = 60
+forceCapture = False
 forceCaptureTime = 60 * 60 # once an hour
 
 # File settings
@@ -82,6 +82,7 @@ if __name__ == "__main__":
 			# send image to server
 			argument.append( imageName )
 			subprocess.Popen( argument )
+			argument.remove( imageName )
 
 			# Update html message with new name and send
 			UpdateHtml.update( targetHtml, resultHtml, imageName)
