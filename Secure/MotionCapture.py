@@ -3,7 +3,7 @@ import subprocess
 import os
 import time
 import UpdateHtml
-import Message
+import SendMessage
 
 from datetime import datetime
 from PIL import Image
@@ -30,7 +30,7 @@ argument = ['python', 'PostImage.py']
 
 # Capture a small test image (for motion detection)
 def captureTestImage():
-	command = "raspistill -w %s -h %s -t 0 -e bmp -o -" % (100, 75)
+	command = "raspistill -w %s -h %s -t 1 -n -e bmp -o -" % (100, 75)
 	imageData = StringIO.StringIO()
 	imageData.write(subprocess.check_output(command, shell=True))
 	imageData.seek(0)
@@ -43,11 +43,14 @@ def captureTestImage():
 def saveImage(width, height):
 	time = datetime.now()
 	filename = "capture-%04d%02d%02d-%02d%02d%02d.jpg" % (time.year, time.month, time.day, time.hour, time.minute, time.second)
-	subprocess.call("raspistill -w %s -h %s -t 0 -e jpg -q 15 -o %s" % (width, height, filename), shell=True)
+	subprocess.call("raspistill -w %s -h %s -t 1 -e jpg -q 15 -o %s" % (width, height, filename), shell=True)
+	print "Captured %s" % filename
+	return filename
         
 # main body loop
 if __name__ == "__main__":
 	# Get first image
+	print "taking test image"
 	image1, buffer1 = captureTestImage()
 
 	# Reset last capture time
@@ -56,6 +59,7 @@ if __name__ == "__main__":
 	while (True):
 
 		# Get comparison image
+		print "getting comparison image"
 		image2, buffer2 = captureTestImage()
 
 		# Count changed pixels
@@ -68,15 +72,18 @@ if __name__ == "__main__":
 					changedPixels += 1
 
 		# Check force capture
+		print "checking force capture: %s - %s" % (time.time() ,lastCapture)
 		if forceCapture:
 			if time.time() - lastCapture > forceCaptureTime:
 				changedPixels = sensitivity + 1
 					
 		# Save an image if pixels changed
+		print "checking changed pixels: %s > %s" % (changedPixels, sensitivity)
 		if changedPixels > sensitivity:
 			lastCapture = time.time()
 			# get image name
 			imageName = saveImage(saveWidth, saveHeight)
+			print "image name: %s" % imageName
 
 			# send image to server
 			argument.append( imageName )
@@ -84,7 +91,7 @@ if __name__ == "__main__":
 
 			# Update html message with new name and send
 			UpdateHtml.update( targetHtml, resultHtml, imageName)
-			SendMessage.sendMessage( 'Alert' ,resultHtml )
+			SendMessage.sendMessage( resultHtml )
 			
 			# remove image file
 			os.remove(imageName)

@@ -19,6 +19,7 @@ def post(targetImage, targetHost = "http://68.149.110.188/images/upload_image.ph
 	# Create the Request object
 	request = urllib2.Request(targetHost, datagen, headers)
 	# Actually do the request, and get the response
+	print(urllib2.urlopen(request).read())
 
 if __name__ == '__main__':
 	if len(argv) > 2:
