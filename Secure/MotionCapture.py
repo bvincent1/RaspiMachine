@@ -44,13 +44,11 @@ def saveImage(width, height):
 	time = datetime.now()
 	filename = "capture-%04d%02d%02d-%02d%02d%02d.jpg" % (time.year, time.month, time.day, time.hour, time.minute, time.second)
 	subprocess.call("raspistill -w %s -h %s -t 1 -e jpg -q 15 -o %s" % (width, height, filename), shell=True)
-	print "Captured %s" % filename
 	return filename
         
 # main body loop
 if __name__ == "__main__":
 	# Get first image
-	print "taking test image"
 	image1, buffer1 = captureTestImage()
 
 	# Reset last capture time
@@ -59,7 +57,6 @@ if __name__ == "__main__":
 	while (True):
 
 		# Get comparison image
-		print "getting comparison image"
 		image2, buffer2 = captureTestImage()
 
 		# Count changed pixels
@@ -72,18 +69,15 @@ if __name__ == "__main__":
 					changedPixels += 1
 
 		# Check force capture
-		print "checking force capture: %s - %s" % (time.time() ,lastCapture)
 		if forceCapture:
 			if time.time() - lastCapture > forceCaptureTime:
 				changedPixels = sensitivity + 1
 					
 		# Save an image if pixels changed
-		print "checking changed pixels: %s > %s" % (changedPixels, sensitivity)
 		if changedPixels > sensitivity:
 			lastCapture = time.time()
 			# get image name
 			imageName = saveImage(saveWidth, saveHeight)
-			print "image name: %s" % imageName
 
 			# send image to server
 			argument.append( imageName )
