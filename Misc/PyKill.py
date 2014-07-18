@@ -18,6 +18,6 @@ if __name__ == "__main__":
 	if len(argv) > 1:
 		status = isRunning(argv[1])
 		killProcess(status)
-		status2 = isRunning(argv[1]):
+		status2 = isRunning(argv[1])
 		if status2 != '':
 			killProcess(status2, bang=True)
