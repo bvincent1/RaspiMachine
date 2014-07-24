@@ -1,3 +1,4 @@
 #!/bin/bash
 echo "Starting RaspiSecure"
-python ~/GitHub/RaspMachine/Secure/MotionCapture.py &
+cd ~/GitHub/RaspMachine/Secure/
+python MotionCapture.py &
