@@ -1,12 +1,29 @@
-from RPIO import PWM
+import RPi.GPIO as GPIO
+import time
 
-servo = PWM.Servo()
+pin = 17
+refresh_period = 0.02
 
-# Set servo on GPIO17 to 1200 milis (1.2ms)
-servo.set_servo(18, 1200)
+GPIO.setmode(GPIO.BCM)
 
-# Set servo on GPIO17 to 2000 mili s (2.0ms)
-servo.set_servo(18, 2000)
+GPIO.setup(pin, GPIO.OUT)
+GPIO.output(pin, True)
 
-# Clear servo on GPIO17
-servo.stop_servo(18)
+while True:
+    for i in range(1, 100):
+        GPIO.output(pin, False)
+        time.sleep(0.001)
+        GPIO.output(pin, True)
+        time.sleep(refresh_period)
+
+    for i in range(1, 100):
+        GPIO.output(pin, False)
+        time.sleep(0.0015)
+        GPIO.output(pin, True)
+        time.sleep(refresh_period)
+
+    for i in range(1, 100):
+        GPIO.output(pin, False)
+        time.sleep(0.002)
+        GPIO.output(pin, True)
+        time.sleep(refresh_period)
