@@ -1,9 +1,12 @@
-# Servo Control
-import time
-import RPi.GPIO as GPIO
+from RPIO import PWM
 
-while True:
-   GPIO.output(pin, GPIO.HIGH)  
-   time.sleep(0.0015)  
-   GPIO.output(pin, GPIO.LOW)  
-   time.sleep(0.0185)
+servo = PWM.Servo()
+
+# Set servo on GPIO17 to 1200µs (1.2ms)
+servo.set_servo(17, 1200)
+
+# Set servo on GPIO17 to 2000µs (2.0ms)
+servo.set_servo(17, 2000)
+
+# Clear servo on GPIO17
+servo.stop_servo(17)
