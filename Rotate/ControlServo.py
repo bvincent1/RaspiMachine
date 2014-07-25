@@ -29,5 +29,4 @@ if __name__ == "__main__":
 		DELAY = iny(argv[2])		
 		setServoAngle(int(argv[1]))
 
-	SERVO.stop_servo(18)
-
+	SERVO.stop_servo(PIN)
