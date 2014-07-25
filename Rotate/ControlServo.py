@@ -30,3 +30,4 @@ if __name__ == "__main__":
 		setServoAngle(int(argv[1]))
 
 	SERVO.stop_servo(18)
+
