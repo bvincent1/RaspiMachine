@@ -4,6 +4,7 @@ import os
 import time
 import UpdateHtml
 import SendMessage
+import PostImage
 
 from datetime import datetime
 from PIL import Image
@@ -24,9 +25,6 @@ saveHeight = 1280
 # email files
 targetHtml = 'EmailBody.html'
 resultHtml = 'EditedHtml.html'
-
-# post image settings
-argument = ['python', 'PostImage.py']
 
 # Capture a small test image (for motion detection)
 def captureTestImage():
@@ -80,9 +78,7 @@ if __name__ == "__main__":
 			imageName = saveImage(saveWidth, saveHeight)
 
 			# send image to server
-			argument.append( imageName )
-			subprocess.Popen( argument )
-			argument.remove( imageName )
+			PostImage.post(imageName)
 
 			# Update html message with new name and send
 			UpdateHtml.update( targetHtml, resultHtml, imageName)
