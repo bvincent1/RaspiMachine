@@ -25,8 +25,14 @@ if __name__ == "__main__":
 
 	
 	elif len(argv) > 2:
-		# set delay and servo to new position from command line
-		DELAY = iny(argv[2])		
+		# set pin and servo to new position from command line
+		PIN = iny(argv[2])		
+		setServoAngle(int(argv[1]))
+		
+	elif len(argv) > 3:
+		# set pin and servo to new position from command line
+		DELAY = iny(argv[3])	
+		PIN = iny(argv[2])		
 		setServoAngle(int(argv[1]))
 
 	SERVO.stop_servo(PIN)
