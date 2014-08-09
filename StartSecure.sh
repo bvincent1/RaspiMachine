@@ -1,4 +1,5 @@
 #!/usr/bin/python
-echo "Starting RaspiSecure" >> /tmp/RaspiMachine.log
+now = $date
+echo "Starting RaspiSecure: $now" >> /tmp/RaspiMachine.log
 cd /home/pi/RaspiMachine/Secure/
 python MotionCapture.py &
