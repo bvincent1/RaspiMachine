@@ -3,9 +3,9 @@ import time
 from RPIO import PWM
 from sys import argv
 
-DELAY = 1
+global DELAY = 1
+global PIN = 18
 SERVO = PWM.Servo()
-PIN = 18
 
 def getFreq(target):
 	return target * 10 + 500
