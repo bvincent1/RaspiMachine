@@ -1,5 +1,4 @@
 #!/bin/bash
-now = "$(date)"
-echo "Starting RaspiSecure: $now" >> /tmp/RaspiMachine.log
+echo "Starting RaspiSecure: $(date)" >> /tmp/RaspiMachine.log
 cd /home/pi/RaspiMachine/Secure/
 python MotionCapture.py &
