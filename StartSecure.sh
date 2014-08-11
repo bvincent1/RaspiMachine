@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/bin/bash
 now = "$(date)"
 echo "Starting RaspiSecure: $now" >> /tmp/RaspiMachine.log
 cd /home/pi/RaspiMachine/Secure/

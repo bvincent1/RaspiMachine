@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/bin/bash
 now = "$(date)"
 echo "Switching off the light: $now" >> /tmp/RaspiMachine.log
 sudo python /home/pi/RaspiMachine/Rotate/ControlServo.py 90
