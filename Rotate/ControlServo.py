@@ -20,12 +20,12 @@ def setServoAngle(angle):
 
 if __name__ == "__main__":
 	
-	if len(argv) < 2:
+	if len(argv) < 3:
 		# set servo to new position from command line
 		setServoAngle(int(argv[1]))
 
 	
-	elif len(argv) < 3:
+	elif len(argv) < 4:
 		# set pin and servo to new position from command line
 		PIN = int(argv[2])
 		setServoAngle(int(argv[1]))
