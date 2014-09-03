@@ -10,6 +10,7 @@ def getIpAddress(target_string = ""):
 	if target_string == '':
 		target_string = "inet addr"
 	out = subprocess.check_output(["ifconfig"]).decode("utf-8")
+	out = out[out.find("wlan0"):]
 	target_index = out.find(target_string)
 	return out[target_index + len(target_string) + 1:target_index + len(target_string) + 14]
 
