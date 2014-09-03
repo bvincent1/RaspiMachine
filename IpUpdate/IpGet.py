@@ -3,12 +3,6 @@ import xml.etree.ElementTree as ET
 
 from sys import argv
 
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
 FILE_NAME = "IpAddr.xml"
 FILE_LOCATION = "/home/stjoes/Dropbox/Misc/scripts/PortChange/"
 
