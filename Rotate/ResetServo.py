@@ -18,21 +18,19 @@ def getPosition():
 	try	:
 		tree = ET.parse(FILE_NAME)
 		root = tree.getroot()
-	except as e:
+	except:
 		raise Exception("No servo xml found")
 	
 	pos = []
 	for servo in root.findall("servo"):
-		pos.append(int(servo.get("angle")), [int(servo.get("pin")), int(servo.get("delay"))])
-
+		pos.append([int(servo.get("angle")), int(servo.get("pin")), int(servo.get("delay"))])
 
 	# [[angle, pin, delay], [,]]
-	return 
+	return pos
 
 
 if __name__ == "__main__":
 	pos_list = getPosition()
-	print("Position:" + pos_list)
 	for servo in pos_list:
 		ControlServo.PIN = servo[1]
 		ControlServo.DELAY = servo[2]

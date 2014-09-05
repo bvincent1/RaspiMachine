@@ -1,1 +1,3 @@
-<data><servo angle=0 pin=17 delay=1/><servo angle=0 pin=23 delay=1/><data/>
+<data>
+<servo angle="0" pin="17" delay="1" />
+<servo angle="0" pin="23" delay="1" /></data>
